@@ -1,6 +1,9 @@
 package Entities;
 
 import WorldMap.Coordinates;
+import WorldMap.WorldMap;
+
+import java.util.Set;
 
 public class Predator extends Creature {
     int attackStrength;
@@ -12,7 +15,7 @@ public class Predator extends Creature {
 
 
     @Override
-    void makeMove() {
+    void makeMove(WorldMap worldMap, Coordinates coordinates) {
 
     }
 }

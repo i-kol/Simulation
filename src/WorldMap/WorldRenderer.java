@@ -2,12 +2,8 @@ package WorldMap;
 
 import Entities.*;
 import static WorldMap.WorldMap.*;
-import static WorldMap.Coordinates.*;
 
 public class WorldRenderer {
-    //public static final String COLOR_RESET = "\u001B[0m";
-    //public static final String GROUND = "\uD83D\uDFEB ";
-    //public static final String GROUND = "\u001B[42m";
 
     public static final String GROUND = ".. ";
     public static final String HERBIVORE = "\uD83D\uDC07 ";
@@ -18,13 +14,13 @@ public class WorldRenderer {
 
     public void render(WorldMap worldMap) {
         for (int i = 0; i < MAP_WIDTH; i++) {
-            String line = "";
+            StringBuilder line = new StringBuilder();
             for (int j = 0; j < MAP_HEIGHT; j++) {
                 Coordinates coordinates = new Coordinates(i, j);
                 if (worldMap.isSquareEmpty(coordinates)){
-                    line += GROUND;
+                    line.append(GROUND);
                 } else {
-                    line += selectUnicodeSpriteEntity(worldMap.getEntity(coordinates));
+                    line.append(selectUnicodeSpriteEntity(worldMap.getEntity(coordinates)));
                 }
             }
             System.out.println(line);
