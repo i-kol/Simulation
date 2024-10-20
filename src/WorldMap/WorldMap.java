@@ -31,9 +31,13 @@ public class WorldMap {
         return !worldMap.containsKey(coordinates);
     }
 
+    public void removeEntity(Coordinates coordinates, Entity entity){
+        worldMap.remove(coordinates, entity);
+    }
+
     public void moveCreature(WorldMap worldMap) {
-        
-        for (Map.Entry<Coordinates, Entity> entry : worldMap.worldMap.entrySet()){
+        HashMap<Coordinates, Entity> updatedWorldMap = new HashMap<>(worldMap.worldMap);
+        for (Map.Entry<Coordinates, Entity> entry : updatedWorldMap.entrySet()){
             Entity entity = entry.getValue();
             if (entity instanceof Herbivore){
                 Coordinates coordinates = entry.getKey();

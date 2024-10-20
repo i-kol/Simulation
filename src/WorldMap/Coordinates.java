@@ -3,12 +3,20 @@ package WorldMap;
 import java.util.Objects;
 
 public class Coordinates {
-    public static Integer rowCount;
-    public static Integer columnCount;
+    private int rowCount;
+    private int columnCount;
 
-    public Coordinates(Integer rowCount, Integer columnCount) {
+    public Coordinates(int rowCount, int columnCount) {
         this.rowCount = rowCount;
         this.columnCount = columnCount;
+    }
+
+    public int getRowCount() {
+        return rowCount;
+    }
+
+    public int getColumnCount() {
+        return columnCount;
     }
 
     @Override
@@ -16,7 +24,7 @@ public class Coordinates {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Coordinates that = (Coordinates) o;
-        return rowCount.equals(that.rowCount) && columnCount.equals(that.columnCount);
+        return rowCount == that.rowCount && columnCount == that.columnCount;
     }
 
     @Override
