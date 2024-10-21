@@ -7,7 +7,7 @@ public class Simulation {
     public void startSimulation(){
         WorldMap worldMap = new WorldMap();
         WorldRenderer renderer = new WorldRenderer();
-        worldMap.fillWorldMapWithEntities(worldMap.chooseNumberOfCreaturesByMapSize());
+        worldMap.fillWorldMapWithEntities();
         renderer.render(worldMap);
         System.out.println("_________________________________");
         worldMap.moveCreature(worldMap);

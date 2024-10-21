@@ -1,21 +1,18 @@
 package WorldMap;
 
 import Entities.*;
+import Actions.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import static Actions.EntitiesRespawn.selectCreatureCountRatio;
+
 public class WorldMap {
     Random random = new Random();
     public static final int MAP_WIDTH = 10;
     public static final int MAP_HEIGHT = 10;
-
-/*    public static final int RATIO_NUMBER_HERBIVORE = 2;
-    public static final int RATIO_NUMBER_PREDATOR = 1;
-    public static final int RATIO_NUMBER_GRASS = 3;
-    public static final int RATIO_NUMBER_TREE = 2;
-    public static final int RATIO_NUMBER_ROCK = 2;*/
 
     HashMap<Coordinates, Entity> worldMap = new HashMap<>();
 
@@ -31,24 +28,24 @@ public class WorldMap {
         return !worldMap.containsKey(coordinates);
     }
 
-    public void removeEntity(Coordinates coordinates, Entity entity){
+    public void removeEntity(Coordinates coordinates, Entity entity) {
         worldMap.remove(coordinates, entity);
     }
 
     public void moveCreature(WorldMap worldMap) {
         HashMap<Coordinates, Entity> updatedWorldMap = new HashMap<>(worldMap.worldMap);
-        for (Map.Entry<Coordinates, Entity> entry : updatedWorldMap.entrySet()){
+        for (Map.Entry<Coordinates, Entity> entry : updatedWorldMap.entrySet()) {
             Entity entity = entry.getValue();
-            if (entity instanceof Herbivore){
+            if (entity instanceof Herbivore) {
                 Coordinates coordinates = entry.getKey();
                 ((Herbivore) entity).makeMove(worldMap, coordinates);
             }
         }
     }
 
-    public void fillWorldMapWithEntities(int numberCreaturesOfSameSpecies) {
+    public void fillWorldMapWithEntities() {
         for (EntitiesOnWorldMap entitiesOnWorldMap : EntitiesOnWorldMap.values()) {
-            for (int i = 0; i < numberCreaturesOfSameSpecies; i++) {
+            for (int i = 0; i < chooseNumberOfCreaturesByMapSize(entitiesOnWorldMap); i++) {
                 Coordinates coordinates = new Coordinates(random.nextInt(MAP_WIDTH), random.nextInt(MAP_HEIGHT));
                 while (!isSquareEmpty(coordinates)) {
                     coordinates = new Coordinates(random.nextInt(MAP_WIDTH), random.nextInt(MAP_HEIGHT));
@@ -58,36 +55,18 @@ public class WorldMap {
         }
     }
 
-    public Entity getClassFromName(EntitiesOnWorldMap entitiesOnWorldMap) {
-        switch (entitiesOnWorldMap.toString()) {
-            case "Herbivore":
-                return new Herbivore(1, 20);
-            case "Predator":
-                return new Predator(2, 40, 10);
-            case "Grass":
-                return new Grass(5);
-            case "Rock":
-                return new Rock();
-            case "Tree":
-                return new Tree();
-            default:
-                throw new IllegalArgumentException("Something broke!");
-        }
+    public int chooseNumberOfCreaturesByMapSize(EntitiesOnWorldMap entitiesOnWorldMap) {
+        return (int) Math.ceil(selectCreatureCountRatio(entitiesOnWorldMap) * MAP_WIDTH * MAP_HEIGHT);
     }
 
-    public int chooseNumberOfCreaturesByMapSize() {
-        int result = MAP_WIDTH * MAP_HEIGHT;
-        int numberCreaturesOfSameSpecies;
-        if (result >= 900) {
-            return numberCreaturesOfSameSpecies = 5;
-        } else if (result >= 400 && result < 900) {
-            return numberCreaturesOfSameSpecies = 4;
-        } else if (result >= 100 && result < 400) {
-            return numberCreaturesOfSameSpecies = 3;
-        } else if (result >= 50 && result < 100) {
-            return numberCreaturesOfSameSpecies = 2;
-        } else {
-            return numberCreaturesOfSameSpecies = 1;
-        }
+    public Entity getClassFromName(EntitiesOnWorldMap entitiesOnWorldMap) {
+        return switch (entitiesOnWorldMap.toString()) {
+            case "Herbivore" -> new Herbivore(1, 20);
+            case "Predator" -> new Predator(2, 40, 10);
+            case "Grass" -> new Grass(5);
+            case "Rock" -> new Rock();
+            case "Tree" -> new Tree();
+            default -> throw new IllegalArgumentException("Something broke!");
+        };
     }
 }

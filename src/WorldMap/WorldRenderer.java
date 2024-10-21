@@ -28,19 +28,13 @@ public class WorldRenderer {
     }
 
     public String selectUnicodeSpriteEntity(Entity entity) {
-        switch (entity.getClass().getSimpleName()) {
-            case "Herbivore":
-                return HERBIVORE;
-            case "Predator":
-                return PREDATOR;
-            case "Grass":
-                return GRASS;
-            case "Rock":
-                return ROCK;
-            case "Tree":
-                return TREE;
-            default:
-                throw new IllegalArgumentException("Something broke!");
-        }
+        return switch (entity.getClass().getSimpleName()) {
+            case "Herbivore" -> HERBIVORE;
+            case "Predator" -> PREDATOR;
+            case "Grass" -> GRASS;
+            case "Rock" -> ROCK;
+            case "Tree" -> TREE;
+            default -> throw new IllegalArgumentException("Something broke!");
+        };
     }
 }

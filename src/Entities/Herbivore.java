@@ -13,6 +13,6 @@ public class Herbivore extends Creature {
         worldMap.removeEntity(coordinates, this);
         coordinates = new Coordinates(coordinates.getRowCount() - 1, coordinates.getColumnCount());
         worldMap.setEntity(coordinates, this);
-        System.out.println("Herbivores have moved");
+        System.out.println("The herbivore has moved");
     }
 }
