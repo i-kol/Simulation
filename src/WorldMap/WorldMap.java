@@ -1,7 +1,6 @@
 package WorldMap;
 
 import Entities.*;
-import Actions.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,12 +23,16 @@ public class WorldMap {
         return worldMap.get(coordinates);
     }
 
+    public void removeEntity(Coordinates coordinates, Entity entity) {
+        worldMap.remove(coordinates, entity);
+    }
+
     public boolean isSquareEmpty(Coordinates coordinates) {
         return !worldMap.containsKey(coordinates);
     }
 
-    public void removeEntity(Coordinates coordinates, Entity entity) {
-        worldMap.remove(coordinates, entity);
+    public int chooseNumberOfCreaturesByMapSize(EntitiesOnWorldMap entitiesOnWorldMap) {
+        return (int) Math.ceil(selectCreatureCountRatio(entitiesOnWorldMap) * MAP_WIDTH * MAP_HEIGHT);
     }
 
     public void moveCreature(WorldMap worldMap) {
@@ -53,10 +56,6 @@ public class WorldMap {
                 setEntity(coordinates, getClassFromName(entitiesOnWorldMap));
             }
         }
-    }
-
-    public int chooseNumberOfCreaturesByMapSize(EntitiesOnWorldMap entitiesOnWorldMap) {
-        return (int) Math.ceil(selectCreatureCountRatio(entitiesOnWorldMap) * MAP_WIDTH * MAP_HEIGHT);
     }
 
     public Entity getClassFromName(EntitiesOnWorldMap entitiesOnWorldMap) {

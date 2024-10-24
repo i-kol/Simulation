@@ -3,10 +3,8 @@ package Entities;
 import WorldMap.Coordinates;
 import WorldMap.WorldMap;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import static WorldMap.WorldRenderer.GROUND;
+import static WorldMap.WorldMap.MAP_HEIGHT;
+import static WorldMap.WorldMap.MAP_WIDTH;
 
 public abstract class Creature extends Entity {
     protected int speed;
@@ -20,6 +18,8 @@ public abstract class Creature extends Entity {
     abstract void makeMove(WorldMap worldMap, Coordinates coordinates);
 
     public boolean isSquareAvailableForMove(Coordinates coordinates, WorldMap worldMap) {
-        return (worldMap.getEntity(coordinates).toString()).equals(GROUND);
+        return worldMap.getEntity(coordinates) == null && coordinates.getRowCount() < MAP_WIDTH
+                && coordinates.getRowCount() >= 0 && coordinates.getColumnCount() <
+                MAP_HEIGHT && coordinates.getColumnCount() >= 0;
     }
 }

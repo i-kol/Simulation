@@ -11,6 +11,7 @@ public class Simulation {
         renderer.render(worldMap);
         System.out.println("_________________________________");
         worldMap.moveCreature(worldMap);
+        System.out.println("_________________________________");
         renderer.render(worldMap);
     }
 }
