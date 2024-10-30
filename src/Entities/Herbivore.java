@@ -11,7 +11,7 @@ public class Herbivore extends Creature {
     @Override
     public void makeMove(WorldMap worldMap, Coordinates coordinates) {
         Coordinates newCoordinates = new Coordinates(coordinates.getRowCount() - 1, coordinates.getColumnCount() - 1);
-        if (isSquareAvailableForMove(newCoordinates, worldMap)) {
+        if (isCellAvailableForMove(newCoordinates, worldMap)) {
             worldMap.removeEntity(coordinates, this);
             worldMap.setEntity(newCoordinates, this);
             System.out.println("The herbivore has moved");

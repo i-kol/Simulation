@@ -17,9 +17,7 @@ public abstract class Creature extends Entity {
 
     abstract void makeMove(WorldMap worldMap, Coordinates coordinates);
 
-    public boolean isSquareAvailableForMove(Coordinates coordinates, WorldMap worldMap) {
-        return worldMap.getEntity(coordinates) == null && coordinates.getRowCount() < MAP_WIDTH
-                && coordinates.getRowCount() >= 0 && coordinates.getColumnCount() <
-                MAP_HEIGHT && coordinates.getColumnCount() >= 0;
+    public static boolean isCellAvailableForMove(Coordinates coordinates, WorldMap worldMap) {
+        return worldMap.getEntity(coordinates) == null && worldMap.isCellAvailableOnWorldMap(coordinates);
     }
 }

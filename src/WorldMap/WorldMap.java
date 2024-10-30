@@ -9,7 +9,7 @@ import java.util.Random;
 import static Actions.EntitiesRespawn.selectCreatureCountRatio;
 
 public class WorldMap {
-    Random random = new Random();
+
     public static final int MAP_WIDTH = 10;
     public static final int MAP_HEIGHT = 10;
 
@@ -27,12 +27,17 @@ public class WorldMap {
         worldMap.remove(coordinates, entity);
     }
 
-    public boolean isSquareEmpty(Coordinates coordinates) {
+    public boolean isCellEmpty(Coordinates coordinates) {
         return !worldMap.containsKey(coordinates);
     }
 
     public int chooseNumberOfCreaturesByMapSize(EntitiesOnWorldMap entitiesOnWorldMap) {
         return (int) Math.ceil(selectCreatureCountRatio(entitiesOnWorldMap) * MAP_WIDTH * MAP_HEIGHT);
+    }
+
+    public boolean isCellAvailableOnWorldMap (Coordinates coordinates){
+        return coordinates.getRowCount() < MAP_WIDTH && coordinates.getRowCount() >= 0 &&
+                coordinates.getColumnCount() < MAP_HEIGHT && coordinates.getColumnCount() >= 0;
     }
 
     public void moveCreature(WorldMap worldMap) {
@@ -47,10 +52,11 @@ public class WorldMap {
     }
 
     public void fillWorldMapWithEntities() {
+        Random random = new Random();
         for (EntitiesOnWorldMap entitiesOnWorldMap : EntitiesOnWorldMap.values()) {
             for (int i = 0; i < chooseNumberOfCreaturesByMapSize(entitiesOnWorldMap); i++) {
                 Coordinates coordinates = new Coordinates(random.nextInt(MAP_WIDTH), random.nextInt(MAP_HEIGHT));
-                while (!isSquareEmpty(coordinates)) {
+                while (!isCellEmpty(coordinates)) {
                     coordinates = new Coordinates(random.nextInt(MAP_WIDTH), random.nextInt(MAP_HEIGHT));
                 }
                 setEntity(coordinates, getClassFromName(entitiesOnWorldMap));

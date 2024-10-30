@@ -17,17 +17,17 @@ public class WorldRenderer {
             StringBuilder line = new StringBuilder();
             for (int j = 0; j < MAP_HEIGHT; j++) {
                 Coordinates coordinates = new Coordinates(i, j);
-                if (worldMap.isSquareEmpty(coordinates)){
+                if (worldMap.isCellEmpty(coordinates)){
                     line.append(GROUND);
                 } else {
-                    line.append(selectUnicodeSpriteEntity(worldMap.getEntity(coordinates)));
+                    line.append(selectUnicodeSpriteForEntity(worldMap.getEntity(coordinates)));
                 }
             }
             System.out.println(line);
         }
     }
 
-    public String selectUnicodeSpriteEntity(Entity entity) {
+    public String selectUnicodeSpriteForEntity(Entity entity) {
         return switch (entity.getClass().getSimpleName()) {
             case "Herbivore" -> HERBIVORE;
             case "Predator" -> PREDATOR;

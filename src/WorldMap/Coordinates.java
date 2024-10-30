@@ -3,8 +3,8 @@ package WorldMap;
 import java.util.Objects;
 
 public class Coordinates {
-    private int rowCount;
-    private int columnCount;
+    private final int rowCount;
+    private final int columnCount;
 
     public Coordinates(int rowCount, int columnCount) {
         this.rowCount = rowCount;
