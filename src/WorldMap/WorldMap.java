@@ -37,7 +37,7 @@ public class WorldMap {
 
     public boolean isCellAvailableOnWorldMap (Coordinates coordinates){
         return coordinates.getRowCount() < MAP_WIDTH && coordinates.getRowCount() >= 0 &&
-                coordinates.getColumnCount() < MAP_HEIGHT && coordinates.getColumnCount() >= 0;
+                coordinates.getColumnCount() < MAP_HEIGHT && coordinates.getColumnCount() >= 0 && getEntity(coordinates) == null;
     }
 
     public void moveCreature(WorldMap worldMap) {

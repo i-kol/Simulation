@@ -17,7 +17,7 @@ public abstract class Creature extends Entity {
 
     abstract void makeMove(WorldMap worldMap, Coordinates coordinates);
 
-    public static boolean isCellAvailableForMove(Coordinates coordinates, WorldMap worldMap) {
-        return worldMap.getEntity(coordinates) == null && worldMap.isCellAvailableOnWorldMap(coordinates);
-    }
+//    public static boolean isCellAvailableForMove(Coordinates coordinates, WorldMap worldMap) {
+//        return worldMap.getEntity(coordinates) == null && worldMap.isCellAvailableOnWorldMap(coordinates);
+//    }
 }

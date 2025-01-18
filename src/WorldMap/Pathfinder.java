@@ -6,18 +6,16 @@ import java.util.*;
 
 public class Pathfinder {
 
-    public Coordinates findPath(WorldMap worldMap, Coordinates coordinates){
-        LinkedList<Coordinates> queue = new LinkedList<>();
+    public static Coordinates findPath(WorldMap worldMap, Coordinates coordinates){
+        Queue<Coordinates> queue = new LinkedList<>();
         Set<Coordinates> visited = new HashSet<>();
         Coordinates target = null;
         List<Coordinates> neighboringCells;
 
         queue.add(coordinates);
 
-
-
         while (!queue.isEmpty()){
-            queue.getFirst();
+            queue.peek();
             if(worldMap.getEntity(coordinates) instanceof Grass){
                 target = coordinates;
 
@@ -31,11 +29,10 @@ public class Pathfinder {
                 }
             }
         }
-
         return target;
     }
 
-    private List<Coordinates> getAdjacentCell(Coordinates coordinates, WorldMap worldMap){
+    public static List<Coordinates> getAdjacentCell(Coordinates coordinates, WorldMap worldMap){
         ArrayList<Coordinates> listOfAdjacentCell = new ArrayList<>();
 
         Coordinates newRowCountMinus = new Coordinates(coordinates.getRowCount() - 1, coordinates.getColumnCount());
