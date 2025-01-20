@@ -8,10 +8,19 @@ public class Simulation {
         WorldMap worldMap = new WorldMap();
         WorldRenderer renderer = new WorldRenderer();
         worldMap.fillWorldMapWithEntities();
-        renderer.render(worldMap);
-        System.out.println("_________________________________");
-        worldMap.moveCreature(worldMap);
-        System.out.println("_________________________________");
-        renderer.render(worldMap);
+        for (int i = 0; i < 10; i++) {
+            renderer.render(worldMap);
+            worldMap.moveCreature(worldMap);
+//            try {
+//                Thread.sleep(0);
+//            } catch (InterruptedException e) {
+//                throw new RuntimeException(e);
+//            }
+        }
+//        renderer.render(worldMap);
+//        System.out.println("_________________________________");
+//        worldMap.moveCreature(worldMap);
+//        System.out.println("_________________________________");
+//        renderer.render(worldMap);
     }
 }

@@ -16,12 +16,11 @@ public class Herbivore extends Creature {
 
     @Override
     public void makeMove(WorldMap worldMap, Coordinates coordinates) {
-//        Coordinates newCoordinates = new Coordinates(coordinates.getRowCount() - 1, coordinates.getColumnCount() - 1);
 
-        Random random = new Random();
-        List<Coordinates> listOfAvailableCoordinates = getAdjacentCell(coordinates, worldMap);
+        List<Coordinates> listOfAvailableCoordinates = getAdjacentCell(worldMap, coordinates);
 
         if (!listOfAvailableCoordinates.isEmpty()) {
+            Random random = new Random();
             Coordinates newCoordinates = listOfAvailableCoordinates.get(random.nextInt(listOfAvailableCoordinates.size()));
             worldMap.removeEntity(coordinates, this);
             worldMap.setEntity(newCoordinates, this);
@@ -30,13 +29,6 @@ public class Herbivore extends Creature {
             worldMap.setEntity(coordinates, this);
             System.out.println("The herbivore can't move");
         }
-    }
 
-//    @Override
-//    public void makeMove(WorldMap worldMap, Coordinates coordinates) {
-//        Coordinates newCoordinates = Pathfinder.findPath(worldMap, coordinates);
-//        worldMap.removeEntity(coordinates, this);
-//        worldMap.setEntity(newCoordinates, this);
-//        System.out.println("The herbivore has moved");
-//    }
+    }
 }

@@ -35,9 +35,9 @@ public class WorldMap {
         return (int) Math.ceil(selectCreatureCountRatio(entitiesOnWorldMap) * MAP_WIDTH * MAP_HEIGHT);
     }
 
-    public boolean isCellAvailableOnWorldMap (Coordinates coordinates){
+    public boolean isCellAvailableForMove(Coordinates coordinates) {
         return coordinates.getRowCount() < MAP_WIDTH && coordinates.getRowCount() >= 0 &&
-                coordinates.getColumnCount() < MAP_HEIGHT && coordinates.getColumnCount() >= 0 && getEntity(coordinates) == null;
+                coordinates.getColumnCount() < MAP_HEIGHT && coordinates.getColumnCount() >= 0 && isCellEmpty(coordinates);
     }
 
     public void moveCreature(WorldMap worldMap) {
@@ -45,6 +45,8 @@ public class WorldMap {
         for (Map.Entry<Coordinates, Entity> entry : updatedWorldMap.entrySet()) {
             Entity entity = entry.getValue();
             if (entity instanceof Herbivore) {
+                //мы перебрали всю копию карты, ищем там все сущности entity, и если очередная сущность Herbivore,
+                //то получаем ее координаты и делаем ход makeMove
                 Coordinates coordinates = entry.getKey();
                 ((Herbivore) entity).makeMove(worldMap, coordinates);
             }
