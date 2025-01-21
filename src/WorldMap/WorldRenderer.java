@@ -11,6 +11,7 @@ public class WorldRenderer {
     public static final String GRASS = "☘️ ";
     public static final String ROCK = "⛰️ ";
     public static final String TREE = "🌲 ";
+    public static final String DEFAULT_SPRITE = "❓ ";
 
     public void render(WorldMap worldMap) {
         for (int i = 0; i < MAP_WIDTH; i++) {
@@ -34,7 +35,7 @@ public class WorldRenderer {
             case "Grass" -> GRASS;
             case "Rock" -> ROCK;
             case "Tree" -> TREE;
-            default -> throw new IllegalArgumentException("Something broke!");
+            default -> DEFAULT_SPRITE;
         };
     }
 }

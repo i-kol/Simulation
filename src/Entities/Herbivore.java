@@ -2,7 +2,6 @@ package Entities;
 
 import WorldMap.Coordinates;
 import WorldMap.WorldMap;
-import WorldMap.Pathfinder;
 
 import java.util.List;
 import java.util.Random;
