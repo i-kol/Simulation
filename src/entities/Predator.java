@@ -1,9 +1,7 @@
-package Entities;
+package entities;
 
-import WorldMap.Coordinates;
-import WorldMap.WorldMap;
-
-import java.util.Set;
+import worldMap.Coordinates;
+import worldMap.WorldMap;
 
 public class Predator extends Creature {
     int attackStrength;

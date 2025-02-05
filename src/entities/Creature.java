@@ -1,10 +1,7 @@
-package Entities;
+package entities;
 
-import WorldMap.Coordinates;
-import WorldMap.WorldMap;
-
-import static WorldMap.WorldMap.MAP_HEIGHT;
-import static WorldMap.WorldMap.MAP_WIDTH;
+import worldMap.Coordinates;
+import worldMap.WorldMap;
 
 public abstract class Creature extends Entity {
     protected int speed;

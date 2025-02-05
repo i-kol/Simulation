@@ -1,7 +1,7 @@
-package WorldMap;
+package worldMap;
 
-import Entities.*;
-import static WorldMap.WorldMap.*;
+import entities.*;
+import static worldMap.WorldMap.*;
 
 public class WorldRenderer {
 

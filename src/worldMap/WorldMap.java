@@ -1,12 +1,12 @@
-package WorldMap;
+package worldMap;
 
-import Entities.*;
+import entities.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-import static Actions.EntitiesRespawn.selectCreatureCountRatio;
+import static actions.EntitiesRespawn.selectCreatureCountRatio;
 
 public class WorldMap {
 
@@ -73,7 +73,7 @@ public class WorldMap {
             case "Grass" -> new Grass(5);
             case "Rock" -> new Rock();
             case "Tree" -> new Tree();
-            default -> throw new IllegalArgumentException("Something broke!");
+            default -> throw new IllegalArgumentException("Unknown class name of entity!");
         };
     }
 }

@@ -1,4 +1,4 @@
-package WorldMap;
+package worldMap;
 
 import java.util.Objects;
 

@@ -1,12 +1,12 @@
-package Entities;
+package entities;
 
-import WorldMap.Coordinates;
-import WorldMap.WorldMap;
+import worldMap.Coordinates;
+import worldMap.WorldMap;
 
 import java.util.List;
 import java.util.Random;
 
-import static WorldMap.Pathfinder.getAdjacentCell;
+import static worldMap.Pathfinder.getAdjacentCell;
 
 public class Herbivore extends Creature {
     public Herbivore(int speed, int health) {

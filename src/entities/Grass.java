@@ -1,4 +1,4 @@
-package Entities;
+package entities;
 
 public class Grass extends Entity {
     protected int healthRecover;

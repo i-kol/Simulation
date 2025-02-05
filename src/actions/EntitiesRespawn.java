@@ -1,6 +1,6 @@
-package Actions;
+package actions;
 
-import Entities.EntitiesOnWorldMap;
+import entities.EntitiesOnWorldMap;
 
 public class EntitiesRespawn {
     public static double selectCreatureCountRatio(EntitiesOnWorldMap entitiesOnWorldMap) {
