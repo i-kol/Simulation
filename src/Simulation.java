@@ -6,19 +6,13 @@ public class Simulation {
         WorldMap worldMap = new WorldMap();
         WorldRenderer renderer = new WorldRenderer();
         worldMap.fillWorldMapWithEntities();
+        renderer.render(worldMap);
 
-        for (int i = 0; i < 10; i++) {
-            try {
-
-                renderer.render(worldMap);
-                worldMap.moveCreature(worldMap);
-                Thread.sleep(50);
-
-//                System.out.println("\033[H\033[2J");
-
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+        for (int i = 0; i < 20; i++) {
+            worldMap.moveCreature(worldMap);
+            renderer.render(worldMap);
         }
     }
 }
+
+// System.out.println("\033[H\033[2J");

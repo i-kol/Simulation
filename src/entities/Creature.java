@@ -3,6 +3,10 @@ package entities;
 import worldMap.Coordinates;
 import worldMap.WorldMap;
 
+import java.util.List;
+
+import static worldMap.Pathfinder.findPath;
+
 public abstract class Creature extends Entity {
     protected int speed;
     protected int health;
@@ -12,9 +16,16 @@ public abstract class Creature extends Entity {
         this.health = health;
     }
 
-    abstract void makeMove(WorldMap worldMap, Coordinates coordinates);
+    public void makeMove(WorldMap worldMap, Coordinates coordinates) {
 
-//    public static boolean isCellAvailableForMove(Coordinates coordinates, WorldMap worldMap) {
-//        return worldMap.getEntity(coordinates) == null && worldMap.isCellAvailableOnWorldMap(coordinates);
-//    }
+        List<Coordinates> path = findPath(worldMap, coordinates);
+
+        if (!path.isEmpty()) {
+            worldMap.removeEntity(coordinates, this);
+            worldMap.setEntity(path.get(speed), this);
+            System.out.println(getClass().getSimpleName() + " moved to the coordinate: [" + coordinates.getRowCount() + "," + coordinates.getColumnCount() + "]");
+        } else {
+            System.out.println(getClass().getSimpleName() + " cannot move because it cannot see the way");
+        }
+    }
 }
