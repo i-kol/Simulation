@@ -8,7 +8,7 @@ public class Simulation {
         worldMap.fillWorldMapWithEntities();
         renderer.render(worldMap);
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 8; i++) {
             worldMap.moveCreature(worldMap);
             renderer.render(worldMap);
         }

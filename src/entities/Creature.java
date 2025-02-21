@@ -22,7 +22,11 @@ public abstract class Creature extends Entity {
 
         if (!path.isEmpty()) {
             worldMap.removeEntity(coordinates, this);
-            worldMap.setEntity(path.get(speed), this);
+            if (path.size() > speed) {
+                worldMap.setEntity(path.get(speed), this);
+            } else {
+                worldMap.setEntity(path.get(path.size() - 1), this);
+            }
             System.out.println(getClass().getSimpleName() + " moved to the coordinate: [" + coordinates.getRowCount() + "," + coordinates.getColumnCount() + "]");
         } else {
             System.out.println(getClass().getSimpleName() + " cannot move because it cannot see the way");

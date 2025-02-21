@@ -41,7 +41,7 @@ public class WorldMap {
     }
 
     public boolean isCellAvailableForMove(Coordinates coordinates) {
-        return isCellOnWorldMap(coordinates) && (isCellEmpty(coordinates) || getEntity(coordinates) instanceof Grass);
+        return isCellOnWorldMap(coordinates) && (isCellEmpty(coordinates) || getEntity(coordinates) instanceof Grass || getEntity(coordinates) instanceof Herbivore);
     }
 
     public void moveCreature(WorldMap worldMap) {

@@ -20,7 +20,8 @@ public class Pathfinder {
         while (!queue.isEmpty()) {
             Coordinates currentCell = queue.poll();
 
-            if (worldMap.getEntity(currentCell) instanceof Grass) {
+            if ((worldMap.getEntity(currentCell) instanceof Grass && worldMap.getEntity(startCell) instanceof Herbivore) ||
+                    (worldMap.getEntity(currentCell) instanceof Herbivore && worldMap.getEntity(startCell) instanceof Predator)){
                 target = currentCell;
                 break;
             }
