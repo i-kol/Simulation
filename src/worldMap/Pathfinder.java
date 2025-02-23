@@ -4,6 +4,10 @@ import entities.*;
 
 import java.util.*;
 
+import static actions.TurnActions.isCellAvailableForMove;
+import static worldMap.WorldMap.getEntity;
+import static worldMap.WorldMap.isCellOnWorldMap;
+
 public class Pathfinder {
 
     public static List<Coordinates> findPath(WorldMap worldMap, Coordinates startCell) {
@@ -20,8 +24,11 @@ public class Pathfinder {
         while (!queue.isEmpty()) {
             Coordinates currentCell = queue.poll();
 
-            if ((worldMap.getEntity(currentCell) instanceof Grass && worldMap.getEntity(startCell) instanceof Herbivore) ||
-                    (worldMap.getEntity(currentCell) instanceof Herbivore && worldMap.getEntity(startCell) instanceof Predator)){
+//            if ((worldMap.getEntity(currentCell) instanceof Grass && worldMap.getEntity(startCell) instanceof Herbivore) ||
+//                    (worldMap.getEntity(currentCell) instanceof Herbivore && worldMap.getEntity(startCell) instanceof Predator)){
+
+            if ((getEntity(currentCell) instanceof Grass && getEntity(startCell) instanceof Herbivore) ||
+                    (getEntity(currentCell) instanceof Herbivore && getEntity(startCell) instanceof Predator)){
                 target = currentCell;
                 break;
             }
@@ -53,7 +60,7 @@ public class Pathfinder {
             for (int column = -1; column <= 1; column++) {
                 Coordinates cell = new Coordinates(coordinates.getRowCount() + row, coordinates.getColumnCount() + column);
 
-                if (worldMap.isCellOnWorldMap(cell)) {
+                if (isCellOnWorldMap(cell)) {
                     if (row == 0 && column == 0) {
                         continue;
                     }
@@ -70,7 +77,7 @@ public class Pathfinder {
         List<Coordinates> listOfNeighboringCells = getNeighborCells(worldMap, coordinates);
 
         for (Coordinates cell : listOfNeighboringCells) {
-            if (worldMap.isCellAvailableForMove(cell)) {
+            if (isCellAvailableForMove(cell)) {
                 listOfAdjacentCells.add(cell);
             }
         }

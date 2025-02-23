@@ -6,6 +6,7 @@ import worldMap.WorldMap;
 import java.util.List;
 
 import static worldMap.Pathfinder.findPath;
+import static worldMap.WorldMap.setEntity;
 
 public abstract class Creature extends Entity {
     protected int speed;
@@ -23,9 +24,9 @@ public abstract class Creature extends Entity {
         if (!path.isEmpty()) {
             worldMap.removeEntity(coordinates, this);
             if (path.size() > speed) {
-                worldMap.setEntity(path.get(speed), this);
+                setEntity(path.get(speed), this);
             } else {
-                worldMap.setEntity(path.get(path.size() - 1), this);
+                setEntity(path.get(path.size() - 1), this);
             }
             System.out.println(getClass().getSimpleName() + " moved to the coordinate: [" + coordinates.getRowCount() + "," + coordinates.getColumnCount() + "]");
         } else {

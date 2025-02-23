@@ -13,15 +13,15 @@ public class WorldRenderer {
     public static final String TREE = "🌲 ";
     public static final String DEFAULT_SPRITE = "❓ ";
 
-    public void render(WorldMap worldMap) {
+    public void render() {
         for (int i = 0; i < MAP_WIDTH; i++) {
             StringBuilder line = new StringBuilder();
             for (int j = 0; j < MAP_HEIGHT; j++) {
                 Coordinates coordinates = new Coordinates(i, j);
-                if (worldMap.isCellEmpty(coordinates)){
+                if (isCellEmpty(coordinates)){
                     line.append(GROUND);
                 } else {
-                    line.append(selectUnicodeSpriteForEntity(worldMap.getEntity(coordinates)));
+                    line.append(selectUnicodeSpriteForEntity(getEntity(coordinates)));
                 }
             }
             System.out.println(line);
