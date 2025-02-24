@@ -1,7 +1,6 @@
 package entities;
 
 import worldMap.Coordinates;
-import worldMap.WorldMap;
 
 public class Herbivore extends Creature {
     public Herbivore(int speed, int health) {
@@ -9,11 +8,7 @@ public class Herbivore extends Creature {
     }
 
     @Override
-    public void makeMove(WorldMap worldMap, Coordinates coordinates) {
-        super.makeMove(worldMap, coordinates);
+    void attackTheTarget(Coordinates coordinates) {
 
-//        if () {
-//
-//        }
     }
 }

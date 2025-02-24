@@ -21,13 +21,11 @@ public class TurnActions {
         for (Map.Entry<Coordinates, Entity> entry : updatedWorldMap.entrySet()) {
             Entity entity = entry.getValue();
             if (entity instanceof Creature) {
-                //мы перебрали всю копию карты, ищем там все сущности entity, и если очередная сущность Herbivore,
+                //мы перебрали всю копию карты, ищем там все сущности entity, и если очередная сущность Creature,
                 //то получаем ее координаты и делаем ход makeMove
                 Coordinates coordinates = entry.getKey();
-                ((Creature) entity).makeMove(worldMap, coordinates);
+                ((Creature) entity).makeMove(coordinates);
             }
         }
     }
-
-
 }

@@ -3,6 +3,7 @@ package worldMap;
 import entities.*;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class WorldMap {
 
@@ -19,7 +20,7 @@ public class WorldMap {
         return worldMap.get(coordinates);
     }
 
-    public void removeEntity(Coordinates coordinates, Entity entity) {
+    public static void removeEntity(Coordinates coordinates, Entity entity) {
         worldMap.remove(coordinates, entity);
     }
 

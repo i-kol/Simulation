@@ -10,7 +10,7 @@ import static worldMap.WorldMap.isCellOnWorldMap;
 
 public class Pathfinder {
 
-    public static List<Coordinates> findPath(WorldMap worldMap, Coordinates startCell) {
+    public static List<Coordinates> findPath(Coordinates startCell) {
 
         Map<Coordinates, Coordinates> parentMap = new HashMap<>();
         Queue<Coordinates> queue = new LinkedList<>();
@@ -33,7 +33,7 @@ public class Pathfinder {
                 break;
             }
 
-            for (Coordinates neighbor : getAdjacentCells(worldMap, currentCell)) {
+            for (Coordinates neighbor : getAdjacentCells(currentCell)) {
                 if (!visited.contains(neighbor)) {
                     visited.add(neighbor);
                     queue.add(neighbor);
@@ -53,7 +53,7 @@ public class Pathfinder {
         return shortestPath;
     }
 
-    public static List<Coordinates> getNeighborCells(WorldMap worldMap, Coordinates coordinates) {
+    public static List<Coordinates> getNeighborCells(Coordinates coordinates) {
         ArrayList<Coordinates> listOfNeighboringCells = new ArrayList<>();
 
         for (int row = -1; row <= 1; row++) {
@@ -72,9 +72,9 @@ public class Pathfinder {
         return listOfNeighboringCells;
     }
 
-    public static List<Coordinates> getAdjacentCells(WorldMap worldMap, Coordinates coordinates) {
+    public static List<Coordinates> getAdjacentCells(Coordinates coordinates) {
         ArrayList<Coordinates> listOfAdjacentCells = new ArrayList<>();
-        List<Coordinates> listOfNeighboringCells = getNeighborCells(worldMap, coordinates);
+        List<Coordinates> listOfNeighboringCells = getNeighborCells(coordinates);
 
         for (Coordinates cell : listOfNeighboringCells) {
             if (isCellAvailableForMove(cell)) {

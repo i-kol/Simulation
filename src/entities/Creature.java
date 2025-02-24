@@ -1,12 +1,12 @@
 package entities;
 
 import worldMap.Coordinates;
-import worldMap.WorldMap;
 
 import java.util.List;
 
 import static worldMap.Pathfinder.findPath;
-import static worldMap.WorldMap.setEntity;
+import static worldMap.Pathfinder.getNeighborCells;
+import static worldMap.WorldMap.*;
 
 public abstract class Creature extends Entity {
     protected int speed;
@@ -17,12 +17,13 @@ public abstract class Creature extends Entity {
         this.health = health;
     }
 
-    public void makeMove(WorldMap worldMap, Coordinates coordinates) {
-
-        List<Coordinates> path = findPath(worldMap, coordinates);
+    public void makeMove(Coordinates coordinates) {
+        List<Coordinates> path = findPath(coordinates);
 
         if (!path.isEmpty()) {
-            worldMap.removeEntity(coordinates, this);
+
+
+            removeEntity(coordinates, this);
             if (path.size() > speed) {
                 setEntity(path.get(speed), this);
             } else {
@@ -33,4 +34,18 @@ public abstract class Creature extends Entity {
             System.out.println(getClass().getSimpleName() + " cannot move because it cannot see the way");
         }
     }
+
+    public <T> void senseTheTarget(Coordinates coordinates, Class<T> targetClass) {
+        List<Coordinates> neighborCells = getNeighborCells(coordinates);
+
+        for (Coordinates cell : neighborCells) {
+            Object entity = getEntity(cell);
+            if (targetClass.isInstance(entity)) {
+                T target = targetClass.cast(entity);
+                attackTheTarget(cell);
+            }
+        }
+    }
+
+    abstract void attackTheTarget(Coordinates coordinates);
 }
