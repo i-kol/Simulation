@@ -20,8 +20,8 @@ public class WorldMap {
         return worldMap.get(coordinates);
     }
 
-    public static void removeEntity(Coordinates coordinates, Entity entity) {
-        worldMap.remove(coordinates, entity);
+    public static void removeEntity(Coordinates coordinates) {
+        worldMap.remove(coordinates);
     }
 
     public static boolean isCellEmpty(Coordinates coordinates) {

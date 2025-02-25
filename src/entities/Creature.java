@@ -23,7 +23,7 @@ public abstract class Creature extends Entity {
         if (!path.isEmpty()) {
 
 
-            removeEntity(coordinates, this);
+            removeEntity(coordinates);
             if (path.size() > speed) {
                 setEntity(path.get(speed), this);
             } else {
@@ -41,7 +41,7 @@ public abstract class Creature extends Entity {
         for (Coordinates cell : neighborCells) {
             Object entity = getEntity(cell);
             if (targetClass.isInstance(entity)) {
-                T target = targetClass.cast(entity);
+                //T target = targetClass.cast(entity);
                 attackTheTarget(cell);
             }
         }

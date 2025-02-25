@@ -1,9 +1,10 @@
 package entities;
 
 public class Grass extends Entity {
-    protected int healthRecover;
+    protected int grassHealthRecover;
+    public final static int GRASS_HEALTH_RECOVER = 5;
 
-    public Grass(int healthRecover) {
-        this.healthRecover = healthRecover;
+    public Grass(int grassHealthRecover) {
+        this.grassHealthRecover = grassHealthRecover;
     }
 }
