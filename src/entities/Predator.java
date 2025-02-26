@@ -2,6 +2,7 @@ package entities;
 
 import worldMap.Coordinates;
 
+import static worldMap.WorldMap.getEntity;
 import static worldMap.WorldMap.removeEntity;
 
 public class Predator extends Creature {
@@ -17,10 +18,17 @@ public class Predator extends Creature {
 
     @Override
     void attackTheTarget(Coordinates coordinates) {
-//        removeEntity(coordinates);
+        removeEntity(coordinates);
+//        health.getEntity(coordinates);
         if (health > (PREDATOR_MAX_HEALTH - PREDATOR_ATTACK_STRENGTH)) {
             health = PREDATOR_MAX_HEALTH;
         }
         health += PREDATOR_ATTACK_STRENGTH;
+    }
+
+    @Override
+    public void makeMove(Coordinates coordinates) {
+        makeStep(coordinates);
+        senseTheTarget(coordinates, Herbivore.class);
     }
 }

@@ -13,7 +13,8 @@ import static worldMap.WorldMap.getEntity;
 public class TurnActions {
 
     public static boolean isCellAvailableForMove(Coordinates coordinates) {
-        return isCellOnWorldMap(coordinates) && (isCellEmpty(coordinates) || getEntity(coordinates) instanceof Grass || getEntity(coordinates) instanceof Herbivore);
+        return isCellOnWorldMap(coordinates) && (isCellEmpty(coordinates));
+//        return isCellOnWorldMap(coordinates) && (isCellEmpty(coordinates) || getEntity(coordinates) instanceof Grass || getEntity(coordinates) instanceof Herbivore);
     }
 
     public static void moveCreature(WorldMap worldMap) {

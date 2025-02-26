@@ -21,4 +21,10 @@ public class Herbivore extends Creature {
         }
         health += GRASS_HEALTH_RECOVER;
     }
+
+    @Override
+    public void makeMove(Coordinates coordinates) {
+        makeStep(coordinates);
+        senseTheTarget(coordinates, Grass.class);
+    }
 }

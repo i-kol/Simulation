@@ -17,19 +17,21 @@ public abstract class Creature extends Entity {
         this.health = health;
     }
 
-    public void makeMove(Coordinates coordinates) {
+    public void makeStep(Coordinates coordinates) {
         List<Coordinates> path = findPath(coordinates);
 
         if (!path.isEmpty()) {
-
-
             removeEntity(coordinates);
+
             if (path.size() > speed) {
-                setEntity(path.get(speed), this);
+                coordinates = path.get(speed);
+                setEntity(coordinates, this);
             } else {
-                setEntity(path.get(path.size() - 1), this);
+                coordinates = path.get(path.size() - 1);
+                setEntity(coordinates, this);
             }
             System.out.println(getClass().getSimpleName() + " moved to the coordinate: [" + coordinates.getRowCount() + "," + coordinates.getColumnCount() + "]");
+
         } else {
             System.out.println(getClass().getSimpleName() + " cannot move because it cannot see the way");
         }
@@ -48,4 +50,6 @@ public abstract class Creature extends Entity {
     }
 
     abstract void attackTheTarget(Coordinates coordinates);
+
+    public abstract void makeMove(Coordinates coordinates);
 }
