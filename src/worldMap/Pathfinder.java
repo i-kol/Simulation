@@ -24,33 +24,37 @@ public class Pathfinder {
         while (!queue.isEmpty()) {
             Coordinates currentCell = queue.poll();
 
-//            if ((worldMap.getEntity(currentCell) instanceof Grass && worldMap.getEntity(startCell) instanceof Herbivore) ||
-//                    (worldMap.getEntity(currentCell) instanceof Herbivore && worldMap.getEntity(startCell) instanceof Predator)){
+            for (Coordinates neighborForTargetSearch : getNeighborCells(currentCell)) {
+                if ((getEntity(neighborForTargetSearch) instanceof Grass && getEntity(startCell) instanceof Herbivore) ||
+                        (getEntity(neighborForTargetSearch) instanceof Herbivore && getEntity(startCell) instanceof Predator)) {
+                    target = neighborForTargetSearch;
+                    parentMap.put(target, currentCell);
+                    break;
+                }
+            }
 
-            if ((getEntity(currentCell) instanceof Grass && getEntity(startCell) instanceof Herbivore) ||
-                    (getEntity(currentCell) instanceof Herbivore && getEntity(startCell) instanceof Predator)){
-                target = currentCell;
+            if (target != null) {
                 break;
             }
 
-            for (Coordinates neighbor : getAdjacentCells(currentCell)) {
-                if (!visited.contains(neighbor)) {
-                    visited.add(neighbor);
-                    queue.add(neighbor);
-                    parentMap.put(neighbor, currentCell); // Запоминаем родителя
+            for (Coordinates neighborForPathSearch : getAdjacentCells(currentCell)) {
+                if (!visited.contains(neighborForPathSearch)) {
+                    visited.add(neighborForPathSearch);
+                    queue.add(neighborForPathSearch);
+                    parentMap.put(neighborForPathSearch, currentCell); // Запоминаем родителя
                 }
             }
         }
 
-        List<Coordinates> shortestPath = new ArrayList<>();
+        List<Coordinates> path = new ArrayList<>();
 
         for (Coordinates cell = target; cell != null; cell = parentMap.get(cell)) {
-            shortestPath.add(cell);
+            path.add(cell);
         }
 
-        Collections.reverse(shortestPath);
+        Collections.reverse(path);
 
-        return shortestPath;
+        return path;
     }
 
     public static List<Coordinates> getNeighborCells(Coordinates coordinates) {

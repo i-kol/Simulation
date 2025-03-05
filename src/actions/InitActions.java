@@ -32,8 +32,8 @@ public class InitActions {
 
     public static Entity getClassFromName(EntitiesOnWorldMap entitiesOnWorldMap) {
         return switch (entitiesOnWorldMap.toString()) {
-            case "Herbivore" -> new Herbivore(HERBIVORE_SPEED, HERBIVORE_MAX_HEALTH);
-            case "Predator" -> new Predator(PREDATOR_SPEED, PREDATOR_MAX_HEALTH, PREDATOR_ATTACK_STRENGTH);
+            case "Herbivore" -> new Herbivore(HERBIVORE_SPEED, HERBIVORE_MAX_HEALTH, 0);
+            case "Predator" -> new Predator(PREDATOR_SPEED, PREDATOR_MAX_HEALTH, PREDATOR_ATTACK_STRENGTH, 0);
             case "Grass" -> new Grass(GRASS_HEALTH_RECOVER);
             case "Rock" -> new Rock();
             case "Tree" -> new Tree();

@@ -3,12 +3,11 @@ package worldMap;
 import entities.*;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class WorldMap {
 
-    public static final int MAP_WIDTH = 10;
-    public static final int MAP_HEIGHT = 10;
+    public static final int MAP_WIDTH = 15;
+    public static final int MAP_HEIGHT = 15;
 
     public static HashMap<Coordinates, Entity> worldMap = new HashMap<>();
 
