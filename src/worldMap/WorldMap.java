@@ -6,8 +6,8 @@ import java.util.HashMap;
 
 public class WorldMap {
 
-    public static final int MAP_WIDTH = 15;
-    public static final int MAP_HEIGHT = 15;
+    public static int mapWidth;
+    public static int mapHeight;
 
     public static HashMap<Coordinates, Entity> worldMap = new HashMap<>();
 
@@ -28,7 +28,7 @@ public class WorldMap {
     }
 
     public static boolean isCellOnWorldMap(Coordinates coordinates) {
-        return coordinates.getRowCount() < MAP_WIDTH && coordinates.getRowCount() >= 0 &&
-                coordinates.getColumnCount() < MAP_HEIGHT && coordinates.getColumnCount() >= 0;
+        return coordinates.getRowCount() < mapWidth && coordinates.getRowCount() >= 0 &&
+                coordinates.getColumnCount() < mapHeight && coordinates.getColumnCount() >= 0;
     }
 }

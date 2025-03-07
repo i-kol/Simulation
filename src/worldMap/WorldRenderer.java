@@ -14,9 +14,9 @@ public class WorldRenderer {
     public static final String DEFAULT_SPRITE = "❓ ";
 
     public void render() {
-        for (int i = 0; i < MAP_WIDTH; i++) {
+        for (int i = 0; i < mapWidth; i++) {
             StringBuilder line = new StringBuilder();
-            for (int j = 0; j < MAP_HEIGHT; j++) {
+            for (int j = 0; j < mapHeight; j++) {
                 Coordinates coordinates = new Coordinates(i, j);
                 if (isCellEmpty(coordinates)){
                     line.append(GROUND);

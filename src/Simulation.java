@@ -1,21 +1,21 @@
-import worldMap.WorldMap;
 import worldMap.WorldRenderer;
 
 import static actions.InitActions.fillWorldMapWithEntities;
 import static actions.TurnActions.moveCreature;
 
 public class Simulation {
-    public void startSimulation() {
-        WorldMap worldMap = new WorldMap();
+    protected static boolean flag = true;
+
+    public void startSimulation() throws InterruptedException {
         WorldRenderer renderer = new WorldRenderer();
         fillWorldMapWithEntities();
         renderer.render();
 
-        for (int i = 0; i < 10; i++) {
-            moveCreature(worldMap);
+        while (flag){
+            moveCreature();
             renderer.render();
+            System.out.println("\033[H\033[2J");
+            Thread.sleep(1000);
         }
     }
 }
-
-// System.out.println("\033[H\033[2J");

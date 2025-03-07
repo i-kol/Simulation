@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static worldMap.WorldMap.*;
-import static worldMap.WorldMap.getEntity;
 
 public class TurnActions {
 
@@ -16,7 +15,7 @@ public class TurnActions {
         return isCellOnWorldMap(coordinates) && (isCellEmpty(coordinates));
     }
 
-    public static void moveCreature(WorldMap worldMap) {
+    public static void moveCreature() {
         HashMap<Coordinates, Entity> updatedWorldMap = new HashMap<>(WorldMap.worldMap);
         for (Map.Entry<Coordinates, Entity> entry : updatedWorldMap.entrySet()) {
             Entity entity = entry.getValue();

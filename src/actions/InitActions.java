@@ -14,16 +14,16 @@ import static worldMap.WorldMap.*;
 public class InitActions {
 
     public static int chooseNumberOfCreaturesByMapSize(EntitiesOnWorldMap entitiesOnWorldMap) {
-        return (int) Math.ceil(selectCreatureCountRatio(entitiesOnWorldMap) * MAP_WIDTH * MAP_HEIGHT);
+        return (int) Math.ceil(selectCreatureCountRatio(entitiesOnWorldMap) * mapWidth * mapHeight);
     }
 
     public static void fillWorldMapWithEntities() {
         Random random = new Random();
         for (EntitiesOnWorldMap entitiesOnWorldMap : EntitiesOnWorldMap.values()) {
             for (int i = 0; i < chooseNumberOfCreaturesByMapSize(entitiesOnWorldMap); i++) {
-                Coordinates coordinates = new Coordinates(random.nextInt(MAP_WIDTH), random.nextInt(MAP_HEIGHT));
+                Coordinates coordinates = new Coordinates(random.nextInt(mapWidth), random.nextInt(mapHeight));
                 while (!isCellEmpty(coordinates)) {
-                    coordinates = new Coordinates(random.nextInt(MAP_WIDTH), random.nextInt(MAP_HEIGHT));
+                    coordinates = new Coordinates(random.nextInt(mapWidth), random.nextInt(mapHeight));
                 }
                 setEntity(coordinates, getClassFromName(entitiesOnWorldMap));
             }
