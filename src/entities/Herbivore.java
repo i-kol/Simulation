@@ -24,13 +24,4 @@ public class Herbivore extends Creature {
         System.out.println(getClass().getSimpleName() + " ate the Grass at: [" + coordinates.getRowCount() + "," + coordinates.getColumnCount() + "]");
         System.out.println("Herbivore health is: " + health + " points");
     }
-
-    @Override
-    public void makeMove(Coordinates coordinates) {
-        actionPoint++;
-        senseTheTarget(coordinates, Grass.class);
-        if (actionPoint > 0) {
-            makeStep(coordinates);
-        }
-    }
 }

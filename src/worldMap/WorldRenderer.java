@@ -26,6 +26,7 @@ public class WorldRenderer {
             }
             System.out.println(line);
         }
+        System.out.println("\nPress \"1\" to stop simulation");
     }
 
     public String selectUnicodeSpriteForEntity(Entity entity) {

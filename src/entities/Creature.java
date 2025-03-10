@@ -18,6 +18,21 @@ public abstract class Creature extends Entity {
         this.actionPoint = actionPoint;
     }
 
+    abstract void attackTheTarget(Coordinates coordinates);
+
+    public <T> void senseTheTarget(Coordinates coordinates, Class<T> targetClass) {
+        List<Coordinates> neighborCells = getNeighborCells(coordinates);
+
+        for (Coordinates cell : neighborCells) {
+            Object entity = getEntity(cell);
+
+            if (targetClass.isInstance(entity) && actionPoint > 0) {
+                attackTheTarget(cell);
+                actionPoint--;
+            }
+        }
+    }
+
     public void makeStep(Coordinates coordinates) {
         List<Coordinates> path = findPath(coordinates);
 
@@ -38,20 +53,19 @@ public abstract class Creature extends Entity {
         }
     }
 
-    public <T> void senseTheTarget(Coordinates coordinates, Class<T> targetClass) {
-        List<Coordinates> neighborCells = getNeighborCells(coordinates);
+    public void makeMove(Coordinates coordinates) {
+        actionPoint++;
 
-        for (Coordinates cell : neighborCells) {
-            Object entity = getEntity(cell);
+        if (this instanceof Herbivore) {
+            senseTheTarget(coordinates, Grass.class);
+        } else if (this instanceof Predator) {
+            senseTheTarget(coordinates, Herbivore.class);
+        } else {
+            System.out.println("Unknown type of creature");
+        }
 
-            if (targetClass.isInstance(entity) && actionPoint > 0) {
-                attackTheTarget(cell);
-                actionPoint--;
-            }
+        if (actionPoint > 0) {
+            makeStep(coordinates);
         }
     }
-
-    abstract void attackTheTarget(Coordinates coordinates);
-
-    public abstract void makeMove(Coordinates coordinates);
 }

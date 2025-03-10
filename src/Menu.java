@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 import static worldMap.WorldMap.mapHeight;
@@ -17,31 +18,11 @@ public class Menu {
         mapHeight = columnNumber;
     }
 
-    protected static void simulationControl() throws InterruptedException {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Press: 1 - start/restart simulation, 2 - pause, 3 - continue, 4 - stop and exit");
-        int option = scanner.nextInt();
-
-        if (option == 1) {
+    protected static void abortSimulation() throws IOException {
+        int key = System.in.read();
+        if (key == '1') {
+            System.out.println("You stop the simulation");
             Simulation.flag = false;
         }
-
-        scanner.close();
-
-//        switch (option) {
-//            case 1: simulation.start();
-//                break;
-//            case 2: simulation.sleep(5000);
-//                break;
-//            case 3: simulation.notify();
-//                break;
-//            case 4: simulation.join();
-//            Simulation.flag = false;
-//                break;
-//            default:
-//                System.out.println("Unknown command!\nPress: 1 - start/restart simulation, 2 - pause, 3 - continue, 4 - stop and exit");
-//                break;
-//        }
     }
 }

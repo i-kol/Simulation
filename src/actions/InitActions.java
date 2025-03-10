@@ -5,7 +5,7 @@ import worldMap.Coordinates;
 
 import java.util.Random;
 
-import static entities.EntitiesRespawn.selectCreatureCountRatio;
+import static actions.EntitiesRespawn.selectCreatureCountRatio;
 import static entities.Herbivore.*;
 import static entities.Predator.*;
 import static entities.Grass.GRASS_HEALTH_RECOVER;

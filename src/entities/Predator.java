@@ -36,13 +36,4 @@ public class Predator extends Creature {
             removeEntity(coordinates);
         }
     }
-
-    @Override
-    public void makeMove(Coordinates coordinates) {
-        actionPoint++;
-        senseTheTarget(coordinates, Herbivore.class);
-        if (actionPoint > 0) {
-            makeStep(coordinates);
-        }
-    }
 }
