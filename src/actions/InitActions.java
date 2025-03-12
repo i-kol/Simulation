@@ -30,6 +30,17 @@ public class InitActions {
         }
     }
 
+    public static void addEndedEntities(Class <? extends Entity> entity) {
+        Random random = new Random();
+        if (getEntitiesOfType(entity).isEmpty()) {
+            Coordinates coordinates = new Coordinates(random.nextInt(mapWidth), random.nextInt(mapHeight));
+            while (!isCellEmpty(coordinates)) {
+                coordinates = new Coordinates(random.nextInt(mapWidth), random.nextInt(mapHeight));
+            }
+            setEntity(coordinates, new Herbivore(HERBIVORE_SPEED, HERBIVORE_MAX_HEALTH, 0));
+        }
+    }
+
     public static Entity getClassFromName(EntitiesOnWorldMap entitiesOnWorldMap) {
         return switch (entitiesOnWorldMap.toString()) {
             case "Herbivore" -> new Herbivore(HERBIVORE_SPEED, HERBIVORE_MAX_HEALTH, 0);
