@@ -35,14 +35,12 @@ public class WorldMap {
 
     public static <T> HashMap<Coordinates, T> getEntitiesOfType(Class<T> type) {
         HashMap<Coordinates, T> map = new HashMap<>();
-
         for (Map.Entry<Coordinates, Entity> entity : worldMap.entrySet()) {
             if (type.isInstance(entity.getValue())) {
                 Map.Entry<Coordinates, T> mapEntry = (Map.Entry<Coordinates, T>) entity;
                 map.put(mapEntry.getKey(), mapEntry.getValue());
             }
         }
-
         return map;
     }
 }

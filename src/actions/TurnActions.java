@@ -7,6 +7,7 @@ import worldMap.WorldMap;
 import java.util.HashMap;
 import java.util.Map;
 
+import static actions.EntitiesRespawn.addEndedEntities;
 import static worldMap.WorldMap.*;
 
 public class TurnActions {
@@ -22,6 +23,8 @@ public class TurnActions {
             if (entity instanceof Creature) {
                 Coordinates coordinates = entry.getKey();
                 ((Creature) entity).makeMove(coordinates);
+                addEndedEntities(Grass.class, 3);
+                addEndedEntities(Herbivore.class, 2);
             }
         }
     }
