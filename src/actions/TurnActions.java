@@ -23,8 +23,8 @@ public class TurnActions {
             if (entity instanceof Creature) {
                 Coordinates coordinates = entry.getKey();
                 ((Creature) entity).makeMove(coordinates);
-                addEndedEntities(Grass.class, 3);
-                addEndedEntities(Herbivore.class, 2);
+                addEndedEntities(Grass.class);
+                addEndedEntities(Herbivore.class);
             }
         }
     }
