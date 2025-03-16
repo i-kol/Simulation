@@ -5,9 +5,9 @@ import static actions.TurnActions.moveCreature;
 
 public class Simulation {
     protected static boolean flag = true;
+    WorldRenderer renderer = new WorldRenderer();
 
     public void startSimulation() throws InterruptedException {
-        WorldRenderer renderer = new WorldRenderer();
         fillWorldMapWithEntities();
         renderer.render();
 
@@ -17,5 +17,9 @@ public class Simulation {
             System.out.println("\033[H\033[2J");
             Thread.sleep(1000);
         }
+    }
+
+    public void pauseSimulation() {
+
     }
 }

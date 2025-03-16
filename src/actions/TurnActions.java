@@ -18,8 +18,10 @@ public class TurnActions {
 
     public static void moveCreature() {
         HashMap<Coordinates, Entity> updatedWorldMap = new HashMap<>(WorldMap.worldMap);
+
         for (Map.Entry<Coordinates, Entity> entry : updatedWorldMap.entrySet()) {
             Entity entity = entry.getValue();
+
             if (entity instanceof Creature) {
                 Coordinates coordinates = entry.getKey();
                 ((Creature) entity).makeMove(coordinates);

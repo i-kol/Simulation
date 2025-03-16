@@ -1,7 +1,7 @@
 import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Menu.enterWorldMapSize();
         Simulation simulation = new Simulation();
 
@@ -16,8 +16,8 @@ public class Main {
 
         Thread menuThread = new Thread(() -> {
             try {
-                Menu.abortSimulation();
-            } catch (IOException e) {
+                Menu.abortSimulation(simulationThread);
+            } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
         });

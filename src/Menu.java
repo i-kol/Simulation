@@ -18,11 +18,12 @@ public class Menu {
         mapHeight = columnNumber;
     }
 
-    protected static void abortSimulation() throws IOException {
+    protected static void abortSimulation(Thread thread) throws IOException, InterruptedException {
         int key = System.in.read();
         if (key == '1') {
             System.out.println("You stop the simulation");
-            Simulation.flag = false;
+            thread.wait();
+            //Simulation.flag = false;
         }
     }
 }

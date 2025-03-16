@@ -31,9 +31,11 @@ public class EntitiesRespawn {
 
             for (int i = 0; i < numberOfCreaturesByMapSize; i++) {
                 Coordinates coordinates = new Coordinates(random.nextInt(mapWidth), random.nextInt(mapHeight));
+
                 while (!isCellEmpty(coordinates)) {
                     coordinates = new Coordinates(random.nextInt(mapWidth), random.nextInt(mapHeight));
                 }
+
                 setEntity(coordinates, entity);
             }
         }
