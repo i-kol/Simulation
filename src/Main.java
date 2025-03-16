@@ -16,7 +16,7 @@ public class Main {
 
         Thread menuThread = new Thread(() -> {
             try {
-                Menu.abortSimulation(simulationThread);
+                Menu.controlSimulation();
             } catch (IOException | InterruptedException e) {
                 throw new RuntimeException(e);
             }
