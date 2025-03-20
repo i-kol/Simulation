@@ -21,25 +21,26 @@ public class Simulation {
                 renderer.render();
                 System.out.println("\033[H\033[2J");
                 Thread.sleep(1000);
+            } else {
+                Thread.sleep(100);
             }
         }
     }
 
-    public static void pauseSimulation() throws InterruptedException {
+    public static void pauseSimulation() {
         isPaused = true;
     }
 
-    public static void continueSimulation() throws InterruptedException {
+    public static void continueSimulation() {
         isPaused = false;
     }
 
-    public static void nextTurn() throws InterruptedException {
+    public static void nextTurn() {
         pauseSimulation();
         moveCreature();
         renderer.render();
         System.out.println("\033[H\033[2J");
     }
-
 
     public static void stopSimulation() {
         isRunning = false;

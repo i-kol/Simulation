@@ -12,12 +12,19 @@ import static com.example.worldMap.WorldMap.*;
 
 public class TurnActions {
 
+    private static int moveCounter = 1;
+
     public static boolean isCellAvailableForMove(Coordinates coordinates) {
         return isCellOnWorldMap(coordinates) && (isCellEmpty(coordinates));
     }
 
+    public static int getMoveCounter() {
+        return moveCounter;
+    }
+
     public static void moveCreature() {
         HashMap<Coordinates, Entity> updatedWorldMap = new HashMap<>(WorldMap.worldMap);
+        System.out.println("Move number " + getMoveCounter() + "\n");
 
         for (Map.Entry<Coordinates, Entity> entry : updatedWorldMap.entrySet()) {
             Entity entity = entry.getValue();
@@ -29,5 +36,7 @@ public class TurnActions {
                 addEndedEntities(Herbivore.class);
             }
         }
+
+        moveCounter++;
     }
 }

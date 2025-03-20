@@ -16,6 +16,7 @@ public class WorldRenderer {
     public static final String DEFAULT_SPRITE = "❓ ";
 
     public void render() {
+        System.out.println();
         for (int i = 0; i < mapWidth; i++) {
             StringBuilder line = new StringBuilder();
             for (int j = 0; j < mapHeight; j++) {
