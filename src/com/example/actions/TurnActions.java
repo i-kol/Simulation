@@ -36,7 +36,6 @@ public class TurnActions {
                 addEndedEntities(Herbivore.class);
             }
         }
-
         moveCounter++;
     }
 }
