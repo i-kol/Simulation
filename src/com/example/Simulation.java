@@ -19,7 +19,6 @@ public class Simulation {
             if (!isPaused) {
                 moveCreature();
                 renderer.render();
-                System.out.println("\033[H\033[2J");
                 Thread.sleep(1000);
             } else {
                 Thread.sleep(100);
@@ -39,7 +38,6 @@ public class Simulation {
         pauseSimulation();
         moveCreature();
         renderer.render();
-        System.out.println("\033[H\033[2J");
     }
 
     public static void stopSimulation() {
