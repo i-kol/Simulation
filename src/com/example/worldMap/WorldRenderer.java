@@ -21,7 +21,7 @@ public class WorldRenderer {
             StringBuilder line = new StringBuilder();
             for (int j = 0; j < mapHeight; j++) {
                 Coordinates coordinates = new Coordinates(i, j);
-                if (isCellEmpty(coordinates)){
+                if (isCellEmpty(coordinates)) {
                     line.append(GROUND);
                 } else {
                     line.append(selectUnicodeSpriteForEntity(getEntity(coordinates)));
