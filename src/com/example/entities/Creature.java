@@ -1,11 +1,10 @@
 package com.example.entities;
 
 import com.example.worldMap.Coordinates;
+import com.example.worldMap.Pathfinder;
+import com.example.worldMap.WorldMap;
 
 import java.util.List;
-
-import static com.example.worldMap.Pathfinder.*;
-import static com.example.worldMap.WorldMap.*;
 
 public abstract class Creature extends Entity {
     protected int speed;
@@ -21,10 +20,10 @@ public abstract class Creature extends Entity {
     abstract void attackTheTarget(Coordinates coordinates);
 
     public <T> void senseTheTarget(Coordinates coordinates, Class<T> targetClass) {
-        List<Coordinates> neighborCells = getNeighborCells(coordinates);
+        List<Coordinates> neighborCells = Pathfinder.getNeighborCells(coordinates);
 
         for (Coordinates cell : neighborCells) {
-            Object entity = getEntity(cell);
+            Entity entity = WorldMap.getEntity(cell);
 
             if (targetClass.isInstance(entity) && actionPoint > 0) {
                 attackTheTarget(cell);
@@ -34,19 +33,19 @@ public abstract class Creature extends Entity {
     }
 
     public void makeStep(Coordinates coordinates) {
-        List<Coordinates> path = findPath(coordinates);
+        List<Coordinates> path = Pathfinder.findPath(coordinates);
 
         if (!path.isEmpty() && actionPoint > 0) {
-            removeEntity(coordinates);
+            WorldMap.removeEntity(coordinates);
 
             if (path.size() - 1 > speed) {
-                setEntity(path.get(speed), this);
+                WorldMap.setEntity(path.get(speed), this);
             } else {
-                setEntity(path.get(path.size() - 2), this);
+                WorldMap.setEntity(path.get(path.size() - 2), this);
             }
 
             actionPoint--;
-            System.out.println(getClass().getSimpleName() + " moved to the coordinate: [" + coordinates.getRowCount() + "," + coordinates.getColumnCount() + "]");
+            System.out.println(getClass().getSimpleName() + " moved to the coordinate: [" + coordinates.getRow() + "," + coordinates.getColumn() + "]");
 
         } else {
             System.out.println(getClass().getSimpleName() + " cannot move because it cannot see the way");

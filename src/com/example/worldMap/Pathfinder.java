@@ -1,12 +1,9 @@
 package com.example.worldMap;
 
+import com.example.actions.TurnActions;
 import com.example.entities.*;
 
 import java.util.*;
-
-import static com.example.actions.TurnActions.isCellAvailableForMove;
-import static com.example.worldMap.WorldMap.getEntity;
-import static com.example.worldMap.WorldMap.isCellOnWorldMap;
 
 public class Pathfinder {
 
@@ -25,8 +22,8 @@ public class Pathfinder {
             Coordinates currentCell = queue.poll();
 
             for (Coordinates neighborForTargetSearch : getNeighborCells(currentCell)) {
-                if ((getEntity(neighborForTargetSearch) instanceof Grass && getEntity(startCell) instanceof Herbivore) ||
-                        (getEntity(neighborForTargetSearch) instanceof Herbivore && getEntity(startCell) instanceof Predator)) {
+                if ((WorldMap.getEntity(neighborForTargetSearch) instanceof Grass && WorldMap.getEntity(startCell) instanceof Herbivore) ||
+                        (WorldMap.getEntity(neighborForTargetSearch) instanceof Herbivore && WorldMap.getEntity(startCell) instanceof Predator)) {
                     target = neighborForTargetSearch;
                     parentMap.put(target, currentCell);
                     break;
@@ -62,9 +59,9 @@ public class Pathfinder {
 
         for (int row = -1; row <= 1; row++) {
             for (int column = -1; column <= 1; column++) {
-                Coordinates cell = new Coordinates(coordinates.getRowCount() + row, coordinates.getColumnCount() + column);
+                Coordinates cell = new Coordinates(coordinates.getRow() + row, coordinates.getColumn() + column);
 
-                if (isCellOnWorldMap(cell)) {
+                if (WorldMap.isCellOnWorldMap(cell)) {
                     if (row == 0 && column == 0) {
                         continue;
                     }
@@ -81,7 +78,7 @@ public class Pathfinder {
         List<Coordinates> listOfNeighboringCells = getNeighborCells(coordinates);
 
         for (Coordinates cell : listOfNeighboringCells) {
-            if (isCellAvailableForMove(cell)) {
+            if (TurnActions.isCellAvailableForMove(cell)) {
                 listOfAdjacentCells.add(cell);
             }
         }

@@ -3,41 +3,37 @@ package com.example.actions;
 import com.example.entities.EntitiesOnWorldMap;
 import com.example.entities.Entity;
 import com.example.worldMap.Coordinates;
+import com.example.worldMap.WorldMap;
 
 import java.util.Random;
-
-import static com.example.actions.InitActions.chooseNumberOfCreaturesByMapSize;
-import static com.example.actions.InitActions.getClassFromName;
-import static com.example.worldMap.WorldMap.*;
-import static com.example.worldMap.WorldMap.setEntity;
 
 public class EntitiesRespawn {
 
     public static double selectCreatureCountRatio(EntitiesOnWorldMap entitiesOnWorldMap) {
         return switch (entitiesOnWorldMap.toString()) {
-            case "Herbivore" -> 0.03;    // 0.03 by default
-            case "Tree", "Rock" -> 0.04; // 0.04 by default
-            case "Predator" -> 0.02;    // 0.02 by default
-            case "Grass" -> 0.06;    // 0,06 by default
+            case "HERBIVORE" -> 0.03;    // 0.03 by default
+            case "TREE", "ROCK" -> 0.04; // 0.04 by default
+            case "PREDATOR" -> 0.02;    // 0.02 by default
+            case "GRASS" -> 0.06;    // 0,06 by default
             default -> throw new IllegalArgumentException("Unknown type of entity!");
         };
     }
 
     public static <T> void addEndedEntities(Class<T> type) {
-        if (getEntitiesOfType(type).isEmpty()) {
+        if (WorldMap.getEntitiesOfType(type).isEmpty()) {
             Random random = new Random();
-            EntitiesOnWorldMap entityName = EntitiesOnWorldMap.valueOf(type.getSimpleName());
-            Entity entity = getClassFromName(entityName);
-            int numberOfCreaturesByMapSize = chooseNumberOfCreaturesByMapSize(entityName);
+            EntitiesOnWorldMap entityName = EntitiesOnWorldMap.valueOf(type.getSimpleName().toUpperCase());
+            Entity entity = InitActions.getClassFromName(entityName);
+            int numberOfCreaturesByMapSize = InitActions.chooseNumberOfCreaturesByMapSize(entityName);
 
             for (int i = 0; i < numberOfCreaturesByMapSize; i++) {
-                Coordinates coordinates = new Coordinates(random.nextInt(mapWidth), random.nextInt(mapHeight));
+                Coordinates coordinates = new Coordinates(random.nextInt(WorldMap.width), random.nextInt(WorldMap.height));
 
-                while (!isCellEmpty(coordinates)) {
-                    coordinates = new Coordinates(random.nextInt(mapWidth), random.nextInt(mapHeight));
+                while (!WorldMap.isCellEmpty(coordinates)) {
+                    coordinates = new Coordinates(random.nextInt(WorldMap.width), random.nextInt(WorldMap.height));
                 }
 
-                setEntity(coordinates, entity);
+                WorldMap.setEntity(coordinates, entity);
             }
         }
     }

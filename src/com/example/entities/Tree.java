@@ -1,4 +1,3 @@
 package com.example.entities;
 
-public class Tree extends Entity {
-}
+public class Tree extends Entity {}

@@ -1,5 +1,5 @@
 package com.example.entities;
 
 public enum EntitiesOnWorldMap {
-    Grass, Tree, Rock, Herbivore, Predator;
+    GRASS, TREE, ROCK, HERBIVORE, PREDATOR;
 }

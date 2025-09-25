@@ -1,9 +1,7 @@
 package com.example.worldMap;
 
+import com.example.Menu;
 import com.example.entities.*;
-
-import static com.example.Menu.showControlMenu;
-import static com.example.worldMap.WorldMap.*;
 
 public class WorldRenderer {
 
@@ -17,19 +15,19 @@ public class WorldRenderer {
 
     public void render() {
         System.out.println();
-        for (int i = 0; i < mapWidth; i++) {
+        for (int i = 0; i < WorldMap.width; i++) {
             StringBuilder line = new StringBuilder();
-            for (int j = 0; j < mapHeight; j++) {
+            for (int j = 0; j < WorldMap.height; j++) {
                 Coordinates coordinates = new Coordinates(i, j);
-                if (isCellEmpty(coordinates)) {
+                if (WorldMap.isCellEmpty(coordinates)) {
                     line.append(GROUND);
                 } else {
-                    line.append(selectUnicodeSpriteForEntity(getEntity(coordinates)));
+                    line.append(selectUnicodeSpriteForEntity(WorldMap.getEntity(coordinates)));
                 }
             }
             System.out.println(line);
         }
-        showControlMenu();
+        Menu.showControlMenu();
     }
 
     public String selectUnicodeSpriteForEntity(Entity entity) {

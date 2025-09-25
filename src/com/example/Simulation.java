@@ -1,9 +1,8 @@
 package com.example;
 
+import com.example.actions.InitActions;
+import com.example.actions.TurnActions;
 import com.example.worldMap.WorldRenderer;
-
-import static com.example.actions.InitActions.fillWorldMapWithEntities;
-import static com.example.actions.TurnActions.moveCreature;
 
 public class Simulation {
     protected static boolean isRunning = true;
@@ -12,12 +11,12 @@ public class Simulation {
     static WorldRenderer renderer = new WorldRenderer();
 
     public void startSimulation() throws InterruptedException {
-        fillWorldMapWithEntities();
+        InitActions.fillWorldMapWithEntities();
         renderer.render();
 
         while (isRunning) {
             if (!isPaused) {
-                moveCreature();
+                TurnActions.moveCreature();
                 renderer.render();
                 Thread.sleep(1000);
             } else {
@@ -36,7 +35,7 @@ public class Simulation {
 
     public static void nextTurn() {
         pauseSimulation();
-        moveCreature();
+        TurnActions.moveCreature();
         renderer.render();
     }
 

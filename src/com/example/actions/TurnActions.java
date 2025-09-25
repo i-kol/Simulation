@@ -7,15 +7,12 @@ import com.example.worldMap.WorldMap;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.actions.EntitiesRespawn.addEndedEntities;
-import static com.example.worldMap.WorldMap.*;
-
 public class TurnActions {
 
     private static int moveCounter = 1;
 
     public static boolean isCellAvailableForMove(Coordinates coordinates) {
-        return isCellOnWorldMap(coordinates) && (isCellEmpty(coordinates));
+        return WorldMap.isCellOnWorldMap(coordinates) && (WorldMap.isCellEmpty(coordinates));
     }
 
     public static int getMoveCounter() {
@@ -23,7 +20,7 @@ public class TurnActions {
     }
 
     public static void moveCreature() {
-        HashMap<Coordinates, Entity> updatedWorldMap = new HashMap<>(WorldMap.worldMap);
+        HashMap<Coordinates, Entity> updatedWorldMap = new HashMap<>(WorldMap.entities);
         System.out.println("Move number " + getMoveCounter() + "\n");
 
         for (Map.Entry<Coordinates, Entity> entry : updatedWorldMap.entrySet()) {
@@ -32,8 +29,8 @@ public class TurnActions {
             if (entity instanceof Creature) {
                 Coordinates coordinates = entry.getKey();
                 ((Creature) entity).makeMove(coordinates);
-                addEndedEntities(Grass.class);
-                addEndedEntities(Herbivore.class);
+                EntitiesRespawn.addEndedEntities(Grass.class);
+                EntitiesRespawn.addEndedEntities(Herbivore.class);
             }
         }
         moveCounter++;

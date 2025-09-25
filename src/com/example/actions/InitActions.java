@@ -2,41 +2,36 @@ package com.example.actions;
 
 import com.example.entities.*;
 import com.example.worldMap.Coordinates;
+import com.example.worldMap.WorldMap;
 
 import java.util.Random;
-
-import static com.example.actions.EntitiesRespawn.selectCreatureCountRatio;
-import static com.example.entities.Herbivore.*;
-import static com.example.entities.Predator.*;
-import static com.example.entities.Grass.GRASS_HEALTH_RECOVER;
-import static com.example.worldMap.WorldMap.*;
 
 public class InitActions {
 
     public static int chooseNumberOfCreaturesByMapSize(EntitiesOnWorldMap entitiesOnWorldMap) {
-        return (int) Math.ceil(selectCreatureCountRatio(entitiesOnWorldMap) * mapWidth * mapHeight);
+        return (int) Math.ceil(EntitiesRespawn.selectCreatureCountRatio(entitiesOnWorldMap) * WorldMap.width * WorldMap.height);
     }
 
     public static void fillWorldMapWithEntities() {
         Random random = new Random();
         for (EntitiesOnWorldMap entitiesOnWorldMap : EntitiesOnWorldMap.values()) {
             for (int i = 0; i < chooseNumberOfCreaturesByMapSize(entitiesOnWorldMap); i++) {
-                Coordinates coordinates = new Coordinates(random.nextInt(mapWidth), random.nextInt(mapHeight));
-                while (!isCellEmpty(coordinates)) {
-                    coordinates = new Coordinates(random.nextInt(mapWidth), random.nextInt(mapHeight));
+                Coordinates coordinates = new Coordinates(random.nextInt(WorldMap.width), random.nextInt(WorldMap.height));
+                while (!WorldMap.isCellEmpty(coordinates)) {
+                    coordinates = new Coordinates(random.nextInt(WorldMap.width), random.nextInt(WorldMap.height));
                 }
-                setEntity(coordinates, getClassFromName(entitiesOnWorldMap));
+                WorldMap.setEntity(coordinates, getClassFromName(entitiesOnWorldMap));
             }
         }
     }
 
     public static Entity getClassFromName(EntitiesOnWorldMap entitiesOnWorldMap) {
         return switch (entitiesOnWorldMap.toString()) {
-            case "Herbivore" -> new Herbivore(HERBIVORE_SPEED, HERBIVORE_MAX_HEALTH, 0);
-            case "Predator" -> new Predator(PREDATOR_SPEED, PREDATOR_MAX_HEALTH, PREDATOR_ATTACK_STRENGTH, 0);
-            case "Grass" -> new Grass(GRASS_HEALTH_RECOVER);
-            case "Rock" -> new Rock();
-            case "Tree" -> new Tree();
+            case "HERBIVORE" -> new Herbivore(Herbivore.HERBIVORE_SPEED, Herbivore.HERBIVORE_MAX_HEALTH, 0);
+            case "PREDATOR" -> new Predator(Predator.PREDATOR_SPEED, Predator.PREDATOR_MAX_HEALTH, Predator.PREDATOR_ATTACK_STRENGTH, 0);
+            case "GRASS" -> new Grass(Grass.GRASS_HEALTH_RECOVER);
+            case "ROCK" -> new Rock();
+            case "TREE" -> new Tree();
             default -> throw new IllegalArgumentException("Unknown class name of entity!");
         };
     }

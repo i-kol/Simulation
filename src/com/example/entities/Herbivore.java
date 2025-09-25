@@ -1,9 +1,7 @@
 package com.example.entities;
 
 import com.example.worldMap.Coordinates;
-
-import static com.example.entities.Grass.GRASS_HEALTH_RECOVER;
-import static com.example.worldMap.WorldMap.removeEntity;
+import com.example.worldMap.WorldMap;
 
 public class Herbivore extends Creature {
     public final static int HERBIVORE_MAX_HEALTH = 25;
@@ -15,13 +13,13 @@ public class Herbivore extends Creature {
 
     @Override
     void attackTheTarget(Coordinates coordinates) {
-        removeEntity(coordinates);
-        if (health > (HERBIVORE_MAX_HEALTH - GRASS_HEALTH_RECOVER)) {
+        WorldMap.removeEntity(coordinates);
+        if (health > (HERBIVORE_MAX_HEALTH - Grass.GRASS_HEALTH_RECOVER)) {
             health = HERBIVORE_MAX_HEALTH;
         } else {
-            health += GRASS_HEALTH_RECOVER;
+            health += Grass.GRASS_HEALTH_RECOVER;
         }
-        System.out.println(getClass().getSimpleName() + " ate the Grass at: [" + coordinates.getRowCount() + "," + coordinates.getColumnCount() + "]");
-        System.out.println("Herbivore health is: " + health + " points");
+        System.out.printf("%s ate the Grass at: [%d, %d]%n", getClass().getSimpleName(), coordinates.getRow(), coordinates.getColumn());
+        System.out.printf("Herbivore health is %d points %n", health);
     }
 }

@@ -1,4 +1,3 @@
 package com.example.entities;
 
-public abstract class Entity {
-}
+public abstract class Entity {}
